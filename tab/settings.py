@@ -65,8 +65,8 @@ def on_submit_ticket_id(num):
         ticketTypeList = ret["ticketTypeList"]
         project_name = ticketMain['eventName']
         ticket_str_list = [
-            (f"{ticket['ticketName']} - 开始时间: {convert_timestamp_to_str(ticket['sellStartTime'])} - 截止时间: "
-             f"{convert_timestamp_to_str(ticket['sellEndTime'])} - 描述: {ticket['ticketDescription']}")
+            (f"{ticket['square']}-{ticket['ticketName']} - 开始时间: {convert_timestamp_to_str(ticket['sellStartTime'])} - 截止时间: "
+             f"{convert_timestamp_to_str(ticket['sellEndTime'])}- 描述: {ticket['ticketDescription']}")
             for ticket in ticketTypeList
         ]
         ticket_value = [
