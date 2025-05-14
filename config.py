@@ -11,14 +11,13 @@ from util.TimeService import TimeService
 # 创建通知器实例
 
 # 获取图标文件的路径
-def get_application_path():
+def get_application_path() -> str:
     if getattr(sys, "frozen", False):
-        application_path = sys._MEIPASS
+        application_path = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
     else:
         application_path = os.path.dirname(os.path.abspath(__file__))
 
     return application_path
-
 
 APP_PATH = get_application_path()
 

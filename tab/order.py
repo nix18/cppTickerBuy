@@ -49,7 +49,7 @@ def order_tab():
 
     def buy_order(order_idx):
         order = orders[order_idx]
-        url = f"https://www.allcpp.cn/allcpp/ticket/buyTicketForOrder.do?orderid={order['id']}&ticketInfo=undefined,{order['ticketCount']},{order['price']}&paytype={order['payType']}"
+        url = f"https://www.allcpp.cn/allcpp/ticket/buyTicketForOrder.do?orderid={order['id']}&ticketInfo=undefined,{order['ticketCount']},{order['price']}&paytype=1   "
         resp = main_request.post(url=url).json()
         loguru.logger.info(f"支付订单： {resp}")
         qr_gen = qrcode.QRCode()
