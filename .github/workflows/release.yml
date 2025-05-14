@@ -13,17 +13,20 @@ jobs:
       matrix:
         config:
           - os:
-              name: ubuntu-latest
-              filename: Linux
+              name: ubuntu-22.04
+              filename: linux_amd64
+          - os:
+              name: ubuntu-22.04-arm
+              filename: linux_arm64
           - os:
               name: macos-14
-              filename: MacOS_amd64
+              filename: macos_arm64
           - os:
-              name: macos-12
-              filename: MacOS_x64
+              name: macos-13
+              filename: macos_intel
           - os:
               name: windows-latest
-              filename: Windows
+              filename: windows_amd64
     steps:
       - name: Checkout source
         uses: actions/checkout@v2
@@ -45,11 +48,11 @@ jobs:
         run: |
           pyinstaller main.spec
       - name: Zip the Build-windows
-        if: matrix.config.os.filename == 'Windows'
+        if: matrix.config.os.filename == 'windows-latest'
         run: Compress-Archive -Path ./dist/cppTicKerBuy.exe -DestinationPath tmp.zip
 
       - name: Zip the Build-linux
-        if: matrix.config.os.filename != 'Windows'
+        if: matrix.config.os.filename != 'windows-latest'
         run: |
           cd ./dist
           zip -r  ../tmp.zip cppTickerBuy
