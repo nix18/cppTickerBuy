@@ -14,6 +14,7 @@ a = Analysis(
     module_collection_mode={
         'gradio': 'py'
     },
+    
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
