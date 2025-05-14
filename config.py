@@ -8,29 +8,13 @@ from util.KVDatabase import KVDatabase
 from util.TimeService import TimeService
 
 
-# 创建通知器实例
-
-# 获取图标文件的路径
-def get_application_path() -> str:
-    if getattr(sys, "frozen", False):
-        application_path = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
-    else:
-        application_path = os.path.dirname(os.path.abspath(__file__))
-
-    return application_path
-
-APP_PATH = get_application_path()
 
 
-def get_application_tmp_path():
-    os.makedirs(os.path.join(get_application_path(), "tmp"), exist_ok=True)
-    return os.path.join(get_application_path(), "tmp")
 
-
-TEMP_PATH = get_application_tmp_path()
 BASE_DIR = os.path.dirname(os.path.realpath(sys.executable))
+TEMP_PATH = BASE_DIR
 
-loguru.logger.info(f"设置路径, APP_PATH={APP_PATH} TEMP_PATH={TEMP_PATH} BASE_DIR={BASE_DIR}")
+loguru.logger.info(f"设置路径 TEMP_PATH={TEMP_PATH} BASE_DIR={BASE_DIR}")
 configDB = KVDatabase(os.path.join(BASE_DIR, "config.json"))
 if not configDB.contains("cookie_path"):
     configDB.insert("cookie_path", os.path.join(BASE_DIR, "cookies.json"))
