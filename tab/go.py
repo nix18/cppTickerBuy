@@ -56,7 +56,6 @@ def go_tab():
             """<label for="datetime">选择抢票的时间</label><br>
                 <input type="datetime-local" id="datetime" name="datetime" step="1">""",
             label="选择抢票的时间",
-            show_label=True,
         )
 
         def upload(filepath):

@@ -12,7 +12,7 @@ from util.TimeService import TimeService
 
 
 BASE_DIR = os.path.dirname(os.path.realpath(sys.executable))
-TEMP_PATH = BASE_DIR
+TEMP_PATH = os.path.join(BASE_DIR,'tmp')
 
 loguru.logger.info(f"设置路径 TEMP_PATH={TEMP_PATH} BASE_DIR={BASE_DIR}")
 configDB = KVDatabase(os.path.join(BASE_DIR, "config.json"))

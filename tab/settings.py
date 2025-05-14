@@ -7,7 +7,7 @@ from urllib.parse import urlparse, parse_qs
 import gradio as gr
 from loguru import logger
 
-from config import main_request, get_application_tmp_path
+from config import main_request, TEMP_PATH
 
 buyer_value = []
 addr_value = []
@@ -65,8 +65,9 @@ def on_submit_ticket_id(num):
         ticketTypeList = ret["ticketTypeList"]
         project_name = ticketMain['eventName']
         ticket_str_list = [
-            (f"{ticket['square']}-{ticket['ticketName']} - 开始时间: {convert_timestamp_to_str(ticket['sellStartTime'])} - 截止时间: "
-             f"{convert_timestamp_to_str(ticket['sellEndTime'])}- 描述: {ticket['ticketDescription']}")
+            (
+                f"{ticket['square']}-{ticket['ticketName']} - 开始时间: {convert_timestamp_to_str(ticket['sellStartTime'])} - 截止时间: "
+                f"{convert_timestamp_to_str(ticket['sellEndTime'])}- 描述: {ticket['ticketDescription']}")
             for ticket in ticketTypeList
         ]
         ticket_value = [
@@ -132,7 +133,7 @@ def on_submit_all(ticket_id, ticket_info, people_indices):
             'tickets': ticket_cur,
             'people_cur': people_cur
         }
-        filename = os.path.join(get_application_tmp_path(), filename_filter(detail) + ".json")
+        filename = os.path.join(TEMP_PATH, filename_filter(detail) + ".json")
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(config_dir, f, ensure_ascii=False, indent=4)
         return [gr.update(), gr.update(value=config_dir, visible=True), gr.update(value=filename, visible=True)]

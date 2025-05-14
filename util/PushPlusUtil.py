@@ -5,7 +5,6 @@ import requests
 import playsound
 import os
 
-from config import get_application_tmp_path
 
 
 def send_message(token, content, title):
